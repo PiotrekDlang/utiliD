@@ -39,5 +39,5 @@ private extern(C) void _start()
 
 void main()
 {
-    write("Hello, World!");
+    write("Hello, World!\n");
 }
