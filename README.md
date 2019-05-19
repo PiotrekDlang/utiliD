@@ -1,5 +1,5 @@
 # utiliD
-A D library with absolutely no dependencies intended for boostrapping the D compiler, D runtime, and other libraries or for bare-metal systems programming.
+A D library with absolutely no dependencies intended for bootstrapping the D compiler, D runtime and other libraries or for bare-metal systems programming.
 
 I'm still working out the precise vision for this library, so bear with me as I will likely change my mind often until something concrete emerges.
 
