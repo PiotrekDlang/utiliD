@@ -9,6 +9,8 @@ void main(string[] args)
         "rdmd"
         , "run.d"
     ];
-    auto result = cmd.execute(null, Config.none, size_t.max, "HelloWorld");
+    write("HelloWorld...");
+    immutable result = cmd.execute(null, Config.none, size_t.max, "HelloWorld");
     assert(result.status == 0);
+    writeln("Passed");
 }
