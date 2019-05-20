@@ -10,10 +10,15 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- script: |
+    echo Start installation...
+    wget http://downloads.dlang.org/releases/2.x/2.086.0/dmd_2.086.0-0_amd64.deb
+    sudo dpkg -i dmd_2.086.0-0_amd64.deb
+  displayName: 'Run install script'
 
 - script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+    echo Execute tests...
+    ls
+    cd test
+    rdmd run.d
+  displayName: 'Run tests'
