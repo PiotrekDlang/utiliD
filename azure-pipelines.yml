@@ -18,7 +18,6 @@ steps:
 
 - script: |
     echo Execute tests...
-    ls
     cd test
     rdmd run.d
   displayName: 'Run tests'
