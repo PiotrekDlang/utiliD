@@ -5,14 +5,15 @@ import std.stdio;
 void main(string[] args)
 {
     immutable objFile = "main.o";
-    auto compile = 
+    auto compile =
     [
         "dmd"
         , "-conf="
         , "-debuglib="
         , "-defaultlib="
         , "-fPIC"
-        , "-I=../../src/d"
+        , "-I=./src"
+        , "-I=../../src/"
         , "-c"
         , "-lib"
         , "src/main.d"
@@ -21,7 +22,13 @@ void main(string[] args)
     auto compileResult = compile.execute();
     scope(exit)
     {
-        objFile.remove();
+        if (objFile.exists())
+            objFile.remove();
+    }
+    if (compileResult.status != 0)
+    {
+        writeln(compileResult.output);
+        return;
     }
 
     immutable exeFile = "main";
@@ -34,11 +41,17 @@ void main(string[] args)
     auto linkResult = link.execute();
     scope(exit)
     {
-        exeFile.remove();
+        if (exeFile.exists())
+            exeFile.remove();
+    }
+    if (linkResult.status != 0)
+    {
+        writeln(compileResult.output);
+        return;
     }
 
     auto run = ["./main"];
     auto runResult = run.execute();
 
-    assert(runResult.output == "Hello, World!\n");
+    assert(runResult.status == 0 && runResult.output == "Hello, World!\n");
 }
