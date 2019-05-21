@@ -1,5 +1,7 @@
 module main;
 
+import d.types;  // for `string`
+
 private extern(C) void __d_sys_exit(long arg1)
 {
     asm
