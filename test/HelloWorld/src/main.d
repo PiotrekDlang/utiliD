@@ -1,6 +1,6 @@
 module main;
 
-import d.types;  // for `string`
+import d;
 
 private extern(C) void __d_sys_exit(long arg1)
 {
