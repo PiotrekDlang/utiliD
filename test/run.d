@@ -2,7 +2,7 @@ import std.file;
 import std.process;
 import std.stdio;
 
-void main(string[] args)
+int main(string[] args)
 {
     auto cmd =
     [
@@ -11,6 +11,11 @@ void main(string[] args)
     ];
     write("HelloWorld...");
     immutable result = cmd.execute(null, Config.none, size_t.max, "HelloWorld");
-    assert(result.status == 0);
+    if (result.status != 0)
+    {
+        writeln(result.output);
+        return 1;
+    }
     writeln("Passed");
+    return 0;
 }

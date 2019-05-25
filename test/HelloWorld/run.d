@@ -2,7 +2,7 @@ import std.file;
 import std.process;
 import std.stdio;
 
-void main(string[] args)
+int main(string[] args)
 {
     immutable objFile = "main.o";
     auto compile =
@@ -28,7 +28,7 @@ void main(string[] args)
     if (compileResult.status != 0)
     {
         writeln(compileResult.output);
-        return;
+        return 1;
     }
 
     immutable exeFile = "main";
@@ -47,11 +47,12 @@ void main(string[] args)
     if (linkResult.status != 0)
     {
         writeln(compileResult.output);
-        return;
+        return 1;
     }
 
     auto run = ["./main"];
     auto runResult = run.execute();
 
     assert(runResult.status == 0 && runResult.output == "Hello, World!\n");
+    return 0;
 }

@@ -1,8 +1,9 @@
 module main;
 
 import d;
+import d.types;
 
-private extern(C) void __d_sys_exit(long arg1)
+private extern(C) void __d_sys_exit(int64 arg1)
 {
     asm
     {
@@ -12,9 +13,9 @@ private extern(C) void __d_sys_exit(long arg1)
     }
 }
 
-private long __d_sys_write(long arg1, in void* arg2, long arg3)
+private int64 __d_sys_write(int64 arg1, in void* arg2, int64 arg3)
 {
-    long result;
+    int64 result;
 
     asm
     {
